@@ -10,20 +10,23 @@ export default class App extends Component {
       inputTextValue:""
     }
   }
-  onChange = (value)=>{
+  onChange = (value) => {
     console.warn(`El switch cambiara a ${value}`)
     this.setState({switchValue: value})
   }
-  onPressLearnMore () {
-    console.warn("Presionaste un boton")
+  onChangeText = (value)=>{
+    this.setState({inputTextValue: value})
+  }
+  onPressLearnMore = () => {
+    console.warn(`Escribiste: ${this.state.inputTextValue}`)
   }
   render() {
     return (
       <View style={styles.container}>
         <TextInput
           style={styles.input}
-          onChangeText={()=>{}}
-          value={"test"}
+          onChangeText={value => this.onChangeText(value)}
+          value={this.state.inputTextValue}
           placeholder="useless placeholder"
         />
         <Switch
@@ -48,5 +51,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },  
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
   },
 });
